@@ -7,13 +7,11 @@ public class MyArrayList<E> {
     int size;
     int capacity;
 
-        //Crio o contrutor padrão
         public MyArrayList(){
             this.data = new Object[10];
             this.size = 0;
         }
 
-        //Crio o construtor com parâmetro que vai definir o tamanho da lista
         public MyArrayList(int capacity){
             this.data = new Object[capacity];
             this.size = 0;
@@ -88,9 +86,8 @@ public class MyArrayList<E> {
                         return true;
                     }
                 } else if (o.equals(data[i])) {
-                    // Remove o elemento no índice encontrado
                     myRemove(i);
-                    return true; // Retorna true porque a remoção foi bem-sucedida
+                    return true; 
                 }
             }
             return false;
@@ -156,3 +153,4 @@ public class MyArrayList<E> {
             return newArray;
         }
 }
+
