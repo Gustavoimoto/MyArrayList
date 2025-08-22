@@ -1,11 +1,8 @@
 package ListaLineares;
 
-import java.util.ArrayList;
-
 public class MyArrayList<E> {
     Object[] data;
     int size;
-    int capacity;
 
         public MyArrayList(){
             this.data = new Object[10];
@@ -13,7 +10,7 @@ public class MyArrayList<E> {
         }
 
         public MyArrayList(int capacity){
-            this.data = new Object[capacity];
+            this.data =  new Object[Math.max(1, capacity)];
             this.size = 0;
         }
 
@@ -50,18 +47,16 @@ public class MyArrayList<E> {
                 data = newData;
             }
 
-            if (index >= 0 && index<=size){
                 for (int i = size; i>index; i--){
                     data[i] = data[i-1];
                 }
-            }
 
             data[index] = e;
             size++;
         }
 
         public E myRemove(int index){
-            if (index < 0 || index> size){
+            if (index < 0 || index >= size){
                 throw new IndexOutOfBoundsException("Índice inválido: " + index);
             }
 
@@ -87,14 +82,14 @@ public class MyArrayList<E> {
                     }
                 } else if (o.equals(data[i])) {
                     myRemove(i);
-                    return true; 
+                    return true;
                 }
             }
             return false;
         }
 
         public E mySet(int index, E e){
-            if (index < 0 || index> size){
+            if (index < 0 || index >= size){
                 throw new IndexOutOfBoundsException("Índice inválido: " + index);
             }
 
@@ -106,7 +101,7 @@ public class MyArrayList<E> {
         }
 
         public E myGet(int index){
-            if (index < 0 || index> size){
+            if (index < 0 || index>= size){
                 throw new IndexOutOfBoundsException("Índice inválido: " + index);
             }
 
@@ -129,21 +124,19 @@ public class MyArrayList<E> {
         }
 
         public int myIndexOf(Object o){
-            for (int i = 0; i<size; i++){
-                if (o ==  null){
+            for (int i = 0; i < size; i++){
+                if (o == null){
                     if(data[i] == null){
                         return i;
-                    }else {
-                        if (o.equals(data[i])){
-                            return i;
-                        }
                     }
+                } else if (o.equals(data[i])){
+                    return i;
                 }
             }
             return -1;
         }
 
-        public Object myToArray(){
+        public Object[] myToArray(){
             Object[] newArray = new Object[size];
 
             for (int i = 0; i<size; i++){
@@ -153,4 +146,3 @@ public class MyArrayList<E> {
             return newArray;
         }
 }
-
